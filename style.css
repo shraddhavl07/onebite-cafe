@@ -1348,7 +1348,7 @@ a {
 
 .celebration-section {
     background: #171513;
-    color: white;
+    color: rgb(235, 226, 226);
     padding: 100px 6.5%;
 }
 
@@ -1395,7 +1395,7 @@ a {
     gap: 15px;
 }
 
-.celebration-item > span {
+.-item > span {
     width: 42px;
     height: 42px;
 
@@ -2167,4 +2167,147 @@ a {
 #staffLoginForm button:hover {
     opacity: 0.9;
 }
+/* =========================================
+   MOBILE FIXES — ONE BITE CAFE
+   ========================================= */
 
+@media (max-width: 600px) {
+
+    /* ---------- ABOUT SECTION ---------- */
+
+    .about {
+        display: block;
+        padding: 55px 24px;
+        overflow: hidden;
+    }
+
+    .about h2 {
+        font-size: clamp(52px, 15vw, 82px);
+        line-height: 0.9;
+        margin: 0 0 35px;
+        max-width: 100%;
+        word-break: normal;
+        overflow-wrap: normal;
+    }
+
+    .about p {
+        font-size: 20px;
+        line-height: 1.55;
+        margin: 0;
+        max-width: 100%;
+    }
+
+
+    /* ---------- CELEBRATION SECTION ---------- */
+
+    .celebration-section {
+        overflow: hidden;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .celebration-heading h2 {
+        font-size: 42px;
+        line-height: 1;
+        margin-bottom: 25px;
+    }
+
+    .celebration-section p {
+        color: #242424;
+    }
+
+    .celebration-section h3,
+    .celebration-section h4,
+    .celebration-section span {
+        color: #242424;
+    }
+
+
+    /* ---------- HERO ART ---------- */
+
+    .hero-art {
+        height: 330px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-art .circle {
+        right: -100px;
+        bottom: -120px;
+    }
+
+    .floating-card {
+        right: 25px;
+        bottom: 35px;
+        width: 180px;
+        max-width: 45%;
+        padding: 20px;
+        transform: rotate(-3deg);
+        z-index: 5;
+        box-sizing: border-box;
+    }
+
+    .floating-card p {
+        font-size: 20px;
+        line-height: 1;
+    }
+
+}
+.celebration-title {
+    color: #171717 !important;
+    -webkit-text-fill-color: #171717 !important;
+    background: none !important;
+    background-image: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+@media (max-width: 600px) {
+    .celebration-title {
+        color: #171717 !important;
+        -webkit-text-fill-color: #171717 !important;
+        background: none !important;
+        background-image: none !important;
+        -webkit-background-clip: initial !important;
+        background-clip: initial !important;
+        text-shadow: none !important;
+        font-size: 52px !important;
+        line-height: 0.95 !important;
+        margin: 15px 0 30px !important;
+    }
+}
+/* FIX: Celebrate With Us heading */
+.celebration-section .celebration-heading h2 {
+    color: #171717 !important;
+    -webkit-text-fill-color: #171717 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+}
+
+@media (max-width: 600px) {
+    .celebration-section .celebration-heading h2 {
+        color: #171717 !important;
+        -webkit-text-fill-color: #171717 !important;
+        font-size: 48px !important;
+        line-height: 0.95 !important;
+        letter-spacing: -2px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+.celebration-heading h2,
+.celebration-heading h2 span,
+.celebration-heading h2 strong {
+    color: #171717 !important;
+    -webkit-text-fill-color: #171717 !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
