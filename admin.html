@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>One Bite Cafe — Admin Dashboard</title>
+
+<style>
+
+    /* ==============================
+       TAB VISIBILITY
+    ============================== */
+
+    .admin-tab-content {
+        display: block;
+    }
+
+    .admin-tab-content.hidden {
+        display: none;
+    }
+
+
+    /* ==============================
+       ADMIN HEADER
+    ============================== */
+
+    .admin-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+
+    /* ==============================
+       HEADER BUTTON AREA
+    ============================== */
+
+    .admin-header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+    /* ==============================
+       LIVE STATUS
+    ============================== */
+
+    .live-status {
+        font-size: 13px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+    /* ==============================
+       CUSTOMER WEBSITE BUTTON
+    ============================== */
+
+    .admin-customer-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 18px;
+
+        border-radius: 10px;
+
+        background: white;
+        color: #111827;
+
+        border: 1px solid #d1d5db;
+
+        text-decoration: none;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+    .admin-customer-btn:hover {
+        background: #f3f4f6;
+        transform: translateY(-1px);
+    }
+
+
+    /* ==============================
+       LOGOUT BUTTON
+    ============================== */
+
+    .admin-logout-btn {
+        border: none;
+
+        padding: 10px 18px;
+
+        border-radius: 10px;
+
+        background: #111827;
+        color: white;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+    .admin-logout-btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.9;
+    }
+
+
+    /* ==============================
+       MOBILE
+    ============================== */
+
+    @media (max-width: 700px) {
+
+        .admin-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .admin-header-actions {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+    }/* ==============================
+   FIX ADMIN HEADER
+============================== */
+
+.staff-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* LIVE badge */
+
+.staff-head .live {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: #ecfdf3;
+    color: #15803d;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Logout */
+
+.staff-head .logout-btn {
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: #111827;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.staff-head .logout-btn:hover {
+    background: #000;
+    transform: translateY(-1px);
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .staff-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-header-actions {
+        width: 100%;
+    }
+
+}
+/* ==============================
+   STAFF HEADER
+============================== */
+
+.staff-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* ==============================
+   HEADER ACTIONS
+============================== */
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+
+/* ==============================
+   LIVE BUTTON
+============================== */
+
+.staff-head .live {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+
+    border-radius: 999px;
+
+    background: #ecfdf5;
+    color: #047857;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* ==============================
+   LOGOUT BUTTON
+============================== */
+
+.staff-head .logout-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #111827;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.staff-head .logout-btn:hover {
+    background: #374151;
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    .staff-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+}
+/* ==============================
+   CENTER ADMIN PAGE
+============================== */
+
+.admin-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+
+/* ==============================
+   CENTER HEADER
+============================== */
+
+.staff-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+
+/* LIVE + LOGOUT */
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+
+/* ==============================
+   CENTER STATISTICS
+============================== */
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 30px 0;
+}
+
+
+/* ==============================
+   CENTER TABS
+============================== */
+
+.admin-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+
+/* ==============================
+   SECTION HEADINGS
+============================== */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 700px) {
+
+    .admin-page {
+        padding: 25px 15px;
+    }
+
+    .admin-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+</style>
+
+<link
+    rel="stylesheet"
+    href="./style.css"
+>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     STAFF AUTH CHECK
+===================================================== -->
+
+<script>
+
+    const staffToken =
+        sessionStorage.getItem(
+            "oneBiteStaffToken"
+        );
+
+
+    if (!staffToken) {
+
+        window.location.href =
+            "login.html";
+
+    }
+
+</script>
+
+
+
+<div class="admin-page">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================= -->
+
+    <header class="staff-head">
+
+        <div>
+
+            <p class="eyebrow">
+                ONE BITE · STAFF
+            </p>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage orders, reviews, menu and table QR codes
+            </p>
+
+        </div>
+
+
+        <div class="admin-header-actions">
+
+            <span class="live">
+                ● LIVE
+            </span>
+
+
+            <button
+                class="logout-btn"
+                onclick="staffLogout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         STATISTICS
+    ================================================= -->
+
+    <section class="admin-stats">
+
+
+        <div class="admin-stat">
+
+            <small>
+                TODAY'S ORDERS
+            </small>
+
+            <strong id="adminOrders">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div class="admin-stat">
+
+            <small>
+                TODAY'S SALES
+            </small>
+
+            <strong id="adminSales">
+                ₹0
+            </strong>
+
+        </div>
+
+
+
+        <div class="admin-stat">
+
+            <small>
+                ACTIVE ORDERS
+            </small>
+
+            <strong id="adminActive">
+                0
+            </strong>
+
+        </div>
+
+
+
+        <div class="admin-stat">
+
+            <small>
+                REVIEWS
+            </small>
+
+            <strong id="adminReviews">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TABS
+    ================================================= -->
+
+    <nav class="admin-tabs">
+
+
+        <!-- ORDERS -->
+
+        <button
+            class="admin-tab active"
+            onclick="showAdminTab(
+                'ordersTab',
+                this
+            )"
+        >
+            Orders
+        </button>
+
+
+
+        <!-- REVIEWS -->
+
+        <button
+            class="admin-tab"
+            onclick="showAdminTab(
+                'reviewsTab',
+                this
+            )"
+        >
+            Reviews
+        </button>
+
+
+
+        <!-- MENU -->
+
+        <button
+            class="admin-tab"
+            onclick="showAdminTab(
+                'menuTab',
+                this
+            )"
+        >
+            Menu
+        </button>
+
+
+
+        <!-- QR CODES -->
+
+        <button
+            class="admin-tab"
+            onclick="showAdminTab(
+                'qrTab',
+                this
+            )"
+        >
+            QR Codes
+        </button>
+
+
+    </nav>
+
+
+
+    <!-- =================================================
+         ORDERS TAB
+    ================================================= -->
+
+    <section
+        id="ordersTab"
+        class="admin-tab-content"
+    >
+
+        <div class="section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    LIVE ORDERS
+                </p>
+
+                <h2>
+                    Recent Orders
+                </h2>
+
+            </div>
+
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadAdminDashboard()"
+            >
+                ↻ Refresh
+            </button>
+
+
+        </div>
+
+
+
+        <div id="adminOrderList">
+
+            <p>
+                Loading orders...
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         REVIEWS TAB
+    ================================================= -->
+
+    <section
+        id="reviewsTab"
+        class="admin-tab-content hidden"
+    >
+
+        <div class="section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    CUSTOMER FEEDBACK
+                </p>
+
+                <h2>
+                    Customer Reviews
+                </h2>
+
+            </div>
+
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadAdminReviews()"
+            >
+                ↻ Refresh
+            </button>
+
+
+        </div>
+
+
+
+        <div id="adminReviewList">
+
+            <p>
+                Loading reviews...
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         MENU TAB
+    ================================================= -->
+
+    <section
+        id="menuTab"
+        class="admin-tab-content hidden"
+    >
+
+        <div class="section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    CAFE MENU
+                </p>
+
+                <h2>
+                    Current Menu
+                </h2>
+
+            </div>
+
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadAdminMenu()"
+            >
+                ↻ Refresh
+            </button>
+
+
+        </div>
+
+
+
+        <div id="adminMenuList">
+
+            <p>
+                Loading menu...
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         QR CODES TAB
+    ================================================= -->
+
+    <section
+        id="qrTab"
+        class="admin-tab-content hidden"
+    >
+
+        <div class="section-heading">
+
+
+            <div>
+
+                <p class="eyebrow">
+                    TABLE QR CODES
+                </p>
+
+                <h2>
+                    Generate Table QR Codes
+                </h2>
+
+                <p>
+                    Print one QR code and place it on each
+                    cafe table. Customers can scan the QR
+                    code to open the menu and order.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- QR CODE GRID -->
+
+        <div
+            id="qrGrid"
+            class="qr-grid"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <div class="admin-footer">
+
+
+        <a
+            href="index.html"
+            class="btn secondary"
+        >
+            ← Customer Website
+        </a>
+
+
+
+        <button
+            class="btn secondary"
+            onclick="staffLogout()"
+        >
+            Logout
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+
+<!-- =====================================================
+     QR CODE LIBRARY
+===================================================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="admin.js"></script>
+
+
+</body>
+
+</html>

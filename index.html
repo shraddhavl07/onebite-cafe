@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>One Bite Cafe</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="site-header">
+
+    <div class="brand">
+        <div class="brand-logo">1B</div>
+
+        <div>
+            <strong>ONE BITE</strong>
+            <small>CAFE</small>
+        </div>
+    </div>
+
+
+    <div class="header-actions">
+
+        <button
+            class="table-button"
+            onclick="startTableOrder()"
+        >
+            Table <span id="headerTable">05</span>
+        </button>
+
+
+        <button
+            class="cart-button"
+            onclick="openCart()"
+        >
+            🛒
+            <span id="cartCount">0</span>
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="eyebrow">
+            WELCOME TO ONE BITE
+        </p>
+
+        <h1>
+         One Bite,<br> Endless Delight
+        </h1>
+
+        <p class="hero-text">
+            Fresh bites, chilled drinks and
+            delicious moments.
+        </p>
+<div class="hero-buttons">
+
+    <button
+        class="primary-btn"
+        onclick="document.getElementById('menu').scrollIntoView({
+            behavior:'smooth'
+        })"
+    >
+        Explore Menu ↓
+    </button>
+
+    <button
+        class="secondary-btn"
+        onclick="document.getElementById('about').scrollIntoView({
+            behavior:'smooth'
+        })"
+    >
+        About Us
+    </button>
+
+</div>
+
+       
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     TABLE INFORMATION
+===================================================== -->
+
+<section class="table-banner">
+
+    <div>
+
+        <small>
+            YOUR TABLE
+        </small>
+
+        <strong>
+            Table <span id="currentTable">05</span>
+        </strong>
+
+    </div>
+
+
+    <button
+        onclick="startTableOrder()"
+    >
+        Change Table
+    </button>
+
+</section>
+
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<section
+    id="menu"
+    class="menu-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="eyebrow">
+                OUR MENU
+            </p>
+
+            <h2>
+                Pick your bite.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY BUTTONS -->
+
+    <div
+        id="categories"
+        class="categories"
+    ></div>
+
+
+    <!-- MENU ITEMS -->
+
+    <div
+        id="menuGrid"
+        class="menu-grid"
+    >
+
+        <p class="loading">
+            Loading menu...
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMBOS
+===================================================== -->
+
+<section class="combo-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="eyebrow">
+                BEST DEALS
+            </p>
+
+                <h2>
+                    Combos.
+                </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="comboGrid"
+        class="combo-grid"
+    ></div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT ONE BITE CAFE
+===================================================== -->
+
+<section
+    id="about"
+    class="about-section"
+>
+
+    <div class="section-heading">
+
+        <div>
+            <p class="eyebrow">
+                ABOUT US
+            </p>
+
+            <h2>
+                More than just<br>
+                a quick bite.
+            </h2>
+        </div>
+
+        <p class="about-intro">
+            One Bite Cafe is a cozy place to enjoy
+            delicious food, refreshing drinks and
+            memorable moments with friends and family.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     BIRTHDAY CELEBRATIONS
+===================================================== -->
+
+<section class="celebration-section">
+
+    <div class="celebration-heading">
+
+        <div>
+            <p class="eyebrow">CELEBRATE WITH US</p>
+
+            <h2>
+                Make your<br>
+                moments special.
+            </h2>
+        </div>
+
+        <p class="celebration-intro">
+            Planning a birthday or special celebration?
+            Let One Bite Cafe make it memorable with
+            beautiful decorations and a cozy celebration setup.
+        </p>
+
+    </div>
+
+
+    <!-- PHOTO GALLERY -->
+
+    <div class="celebration-gallery">
+
+        <div class="celebration-photo ">
+            <img
+                src="imagges/2.jpeg"
+                alt="Birthday celebration decoration at One Bite Cafe"
+            >
+        </div>
+
+        <div class="celebration-photo">
+            <img
+                src="imagges/3.jpeg"
+                alt="Birthday balloon decoration at One Bite Cafe"
+            >
+        </div>
+
+        <div class="celebration-photo">
+            <img
+                src="imagges/4.jpeg"
+                alt="One Bite Cafe interior decoration"
+            >
+        </div>
+
+    </div>
+
+
+    <!-- CELEBRATION INFORMATION -->
+
+    <div class="celebration-info">
+
+        <div class="celebration-card">
+
+            <span class="celebration-number">01</span>
+
+            <h3>
+                Birthday Parties
+            </h3>
+
+            <p>
+                We are available for birthday
+                celebration parties.
+            </p>
+
+        </div>
+
+
+        <div class="celebration-card highlight">
+
+            <span class="celebration-number">02</span>
+
+            <h3>
+                Decorate Your Space
+            </h3>
+
+            <p>
+                Book and decorate your celebration
+                floor starting from
+                <strong>₹999 to ₹2999</strong>.
+            </p>
+
+        </div>
+
+
+        <div class="celebration-card">
+
+            <span class="celebration-number">03</span>
+
+            <h3>
+                Celebration Charges
+            </h3>
+
+            <p>
+                Extra charges are applicable
+                for celebrations.
+            </p>
+
+        </div>
+
+
+        <div class="celebration-card">
+
+            <span class="celebration-number">04</span>
+
+            <h3>
+                Seating
+            </h3>
+
+            <p>
+                Seating charges are not applicable
+                for orders above ₹299 per hour.
+            </p>
+
+        </div>
+
+
+        <div class="celebration-card warning">
+
+            <span class="celebration-number">05</span>
+
+            <h3>
+                Outside Food
+            </h3>
+
+            <p>
+                Outside food is not allowed.
+            </p>
+
+        </div>
+
+
+        <div class="celebration-card">
+
+            <span class="celebration-number">06</span>
+
+            <h3>
+                Follow Us
+            </h3>
+
+            <p>
+    Follow
+    <a
+    href="https://www.instagram.com/onebitekopargaon/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="instagram-link"
+>
+    @onebitekopargaon
+</a>
+    on Instagram for exclusive offers.
+</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOOKING CTA -->
+
+    <div class="celebration-booking">
+
+        <div>
+
+            <p class="eyebrow">
+                READY TO CELEBRATE?
+            </p>
+
+            <h3>
+                Book your celebration
+                at One Bite Cafe.
+            </h3>
+
+        </div>
+
+
+        <a
+            href="tel:7447852375"
+            class="celebration-call"
+        >
+            📞 7447852375
+        </a>
+
+    </div>
+
+</section>
+<!-- =====================================================
+     REVIEWS
+===================================================== -->
+
+<section class="review-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="eyebrow">
+                CUSTOMER LOVE
+            </p>
+
+            <h2>
+                Loved by our customers.
+            </h2>
+
+        </div>
+
+        <p class="review-intro">
+            Good food tastes even better when
+            shared with good words.
+        </p>
+
+    </div>
+
+
+    <!-- REVIEWS -->
+
+    <div class="reviews-grid">
+
+        <div class="review-card">
+
+            <div class="review-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p class="review-text">
+                Amazing food and really nice ambience.
+                Had a great time with friends!
+            </p>
+
+            <strong>
+                — Customer
+            </strong>
+
+        </div>
+
+
+        <div class="review-card">
+
+            <div class="review-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p class="review-text">
+                Loved the food and service.
+                Everything was fresh and tasty.
+            </p>
+
+            <strong>
+                — Customer
+            </strong>
+
+        </div>
+
+
+        <div class="review-card">
+
+            <div class="review-stars">
+                ⭐⭐⭐⭐⭐
+            </div>
+
+            <p class="review-text">
+                A cozy place to spend time
+                with friends and family.
+            </p>
+
+            <strong>
+                — Customer
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- LEAVE REVIEW -->
+
+    <div class="review-action">
+
+        <button
+            class="primary-btn"
+            onclick="openReview()"
+        >
+            ⭐ Leave a Review
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+    <div>
+
+        <strong>
+            ONE BITE CAFE
+        </strong>
+
+        <p>
+            Fresh food · Good vibes · One bite at a time.
+        </p>
+
+    </div>
+
+
+    <div class="footer-contact">
+
+        <p>
+            📍 Your Cafe Location
+        </p>
+
+        <p>
+            7447852375
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     CART DRAWER
+===================================================== -->
+
+<div
+    id="cartDrawer"
+    class="overlay hidden"
+>
+
+    <div class="cart-panel">
+
+        <div class="modal-head">
+
+            <div>
+
+                <p class="eyebrow">
+                    YOUR ORDER
+                </p>
+
+                <h2>
+                    Your Cart
+                </h2>
+
+            </div>
+
+
+            <button
+                class="close-btn"
+                onclick="closeCart()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="cart-table-info">
+
+            Table
+            <strong id="cartTable">
+                05
+            </strong>
+
+        </div>
+
+
+        <div
+            id="cartItems"
+            class="cart-items"
+        ></div>
+
+
+        <div class="cart-total-row">
+
+            <span>
+                Total
+            </span>
+
+            <strong id="cartTotal">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <button
+            class="primary-btn full"
+            onclick="placeOrder()"
+        >
+            Place Order
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TABLE MODAL
+===================================================== -->
+
+<div
+    id="tableModal"
+    class="overlay hidden"
+>
+
+    <div class="modal">
+
+        <button
+            class="close-btn"
+            onclick="closeTableModal()"
+        >
+            ×
+        </button>
+
+
+        <p class="eyebrow">
+            TABLE NUMBER
+        </p>
+
+        <h2>
+            Where are you sitting?
+        </h2>
+
+
+        <input
+            id="tableInput"
+            type="number"
+            min="1"
+            max="99"
+            placeholder="Enter table number"
+        >
+
+
+        <button
+            class="primary-btn full"
+            onclick="confirmTable()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ORDER SUCCESS / TRACKING
+===================================================== -->
+
+<div
+    id="trackingModal"
+    class="overlay hidden"
+>
+
+    <div class="modal tracking-modal">
+
+        <button
+            class="close-btn"
+            onclick="closeTracking()"
+        >
+            ×
+        </button>
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <p class="eyebrow">
+            ORDER PLACED
+        </p>
+
+        <h2>
+            Order <span id="orderNumber">#0</span>
+        </h2>
+
+
+        <p>
+            Your order has been sent to the cafe.
+        </p>
+
+
+        <div class="tracking-table">
+
+            Table
+            <strong id="trackingTable">
+                05
+            </strong>
+
+        </div>
+
+
+        <div class="tracking-steps">
+
+    <div
+        id="trackingReceived"
+        class="step active"
+    >
+        <span>✓</span>
+
+        <small>
+            Received
+        </small>
+    </div>
+
+
+    <div
+        id="trackingBeingMade"
+        class="step"
+    >
+        <span>2</span>
+
+        <small>
+            Being Made
+        </small>
+    </div>
+
+
+    <div
+        id="trackingReady"
+        class="step"
+    >
+        <span>3</span>
+
+        <small>
+            Ready
+        </small>
+    </div>
+
+
+    <div
+        id="trackingServed"
+        class="step"
+    >
+        <span>4</span>
+
+        <small>
+            Served
+        </small>
+    </div>
+
+</div>
+
+
+        <button
+            class="primary-btn full"
+            onclick="closeTracking()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     REVIEW MODAL
+===================================================== -->
+
+<div
+    id="reviewModal"
+    class="overlay hidden"
+>
+
+    <div class="modal">
+
+        <button
+            class="close-btn"
+            onclick="closeReview()"
+        >
+            ×
+        </button>
+
+
+        <p class="eyebrow">
+            YOUR EXPERIENCE
+        </p>
+
+        <h2>
+            Leave a Review
+        </h2>
+
+
+        <input
+            id="reviewName"
+            type="text"
+            placeholder="Your name"
+        >
+
+
+        <select id="reviewRating">
+
+            <option value="5">
+                ⭐⭐⭐⭐⭐
+            </option>
+
+            <option value="4">
+                ⭐⭐⭐⭐
+            </option>
+
+            <option value="3">
+                ⭐⭐⭐
+            </option>
+
+            <option value="2">
+                ⭐⭐
+            </option>
+
+            <option value="1">
+                ⭐
+            </option>
+
+        </select>
+
+
+        <textarea
+            id="reviewText"
+            rows="5"
+            placeholder="Tell us about your experience..."
+        ></textarea>
+
+
+        <button
+            class="primary-btn full"
+            onclick="submitReview()"
+        >
+            Submit Review
+        </button>
+
+    </div>
+
+</div>
+<!-- =====================================================
+     ORDER SUCCESS MODAL
+===================================================== -->
+
+<div
+    id="orderSuccessModal"
+    class="overlay hidden"
+>
+
+    <div class="modal success-box">
+
+        <button
+            class="close-btn"
+            onclick="closeOrderSuccess()"
+        >
+            ×
+        </button>
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <p class="eyebrow">
+            ORDER SUCCESSFUL
+        </p>
+
+        <h2>
+            Order Placed!
+        </h2>
+
+        <p>
+            Your order has been received successfully.
+        </p>
+
+        <p class="success-order">
+            Order
+            <strong id="successOrderNumber">
+                #0
+            </strong>
+        </p>
+
+        <button
+            type="button"
+            class="primary-btn full"
+            onclick="continueToTracking()"
+        >
+            Continue
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+
+<!-- =====================================================
+     QR CODE LIBRARY
+===================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<!-- =====================================================
+     MAIN JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+<!-- =====================================================
+     TABLE DISPLAY
+===================================================== -->
+
+<script>
+
+    function updateTableDisplay() {
+
+        const table =
+            localStorage.getItem(
+                "oneBiteTable"
+            ) || "05";
+
+
+        const header =
+            document.getElementById(
+                "headerTable"
+            );
+
+        const current =
+            document.getElementById(
+                "currentTable"
+            );
+
+        const cart =
+            document.getElementById(
+                "cartTable"
+            );
+
+        const tracking =
+            document.getElementById(
+                "trackingTable"
+            );
+
+
+        if (header) {
+            header.textContent = table;
+        }
+
+        if (current) {
+            current.textContent = table;
+        }
+
+        if (cart) {
+            cart.textContent = table;
+        }
+
+        if (tracking) {
+            tracking.textContent = table;
+        }
+
+    }
+
+
+    updateTableDisplay();
+
+</script>
+
+
+</body>
+
+</html>

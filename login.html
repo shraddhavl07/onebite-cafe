@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>One Bite Cafe — Staff Login</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body class="login-page">
+
+
+    <main class="login-container">
+
+        <div class="login-card">
+
+
+            <!-- LOGO -->
+
+            <div class="login-logo">
+                1B
+            </div>
+
+
+            <p class="eyebrow">
+                ONE BITE CAFE
+            </p>
+
+
+            <h1>
+                Staff Login
+            </h1>
+
+
+            <p class="login-subtitle">
+                Sign in to manage cafe orders.
+            </p>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="staffLoginForm">
+
+
+                <label for="staffUsername">
+                    Username
+                </label>
+
+                <input
+                    id="staffUsername"
+                    type="text"
+                    placeholder="Enter username"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <label for="staffPassword">
+                    Password
+                </label>
+
+                <input
+                    id="staffPassword"
+                    type="password"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <!-- ERROR -->
+
+                <p
+                    id="loginError"
+                    class="login-error"
+                ></p>
+
+
+                <!-- LOGIN BUTTON -->
+
+                <button
+                    id="loginButton"
+                    type="submit"
+                    class="primary-btn half"
+                >
+                    Login to Dashboard
+                </button>
+
+
+            </form>
+
+
+            <!-- BACK -->
+
+            <a
+                href="index.html"
+                class="back-link"
+            >
+                ← Back to One Bite Cafe
+            </a>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =================================================
+         STAFF LOGIN JAVASCRIPT
+    ================================================= -->
+
+    <script>
+
+       
+
+    const loginForm =
+        document.getElementById("staffLoginForm");
+
+    loginForm.addEventListener(
+        "submit",
+        async function (event) {
+
+            event.preventDefault();
+
+            const username =
+                document
+                    .getElementById("staffUsername")
+                    .value
+                    .trim();
+
+            const password =
+                document
+                    .getElementById("staffPassword")
+                    .value;
+
+            const error =
+                document.getElementById("loginError");
+
+            const button =
+                document.getElementById("loginButton");
+
+            // Clear previous error
+            error.textContent = "";
+
+            // Disable button
+            button.disabled = true;
+            button.textContent = "Signing in...";
+
+            try {
+
+                /*
+                 * SEND LOGIN REQUEST TO FASTAPI
+                 */
+               const response = await fetch(
+    "/api/login",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    }
+                );
+
+
+                /*
+                 * SAFELY READ RESPONSE
+                 */
+                const responseText =
+                    await response.text();
+
+                let data = {};
+
+                if (responseText) {
+
+                    try {
+
+                        data =
+                            JSON.parse(responseText);
+
+                    } catch (jsonError) {
+
+                        console.error(
+                            "Invalid JSON response:",
+                            responseText
+                        );
+
+                        throw new Error(
+                            "Server returned an invalid response."
+                        );
+                    }
+                }
+
+
+                /*
+                 * HANDLE LOGIN ERROR
+                 */
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.detail ||
+                        data.message ||
+                        "Invalid username or password."
+                    );
+                }
+
+
+                /*
+                 * CHECK TOKEN
+                 */
+                if (!data.token) {
+
+                    throw new Error(
+                        "Login succeeded but no staff token was returned."
+                    );
+                }
+
+
+                /*
+                 * SAVE STAFF TOKEN
+                 */
+                sessionStorage.setItem(
+                    "oneBiteStaffToken",
+                    data.token
+                );
+
+
+                /*
+                 * SAVE LOGIN STATE
+                 */
+                sessionStorage.setItem(
+                    "oneBiteStaffLoggedIn",
+                    "true"
+                );
+
+
+                /*
+                 * OPEN STAFF DASHBOARD
+                 */
+                window.location.href =
+                    "admin.html";
+
+            }
+
+
+            catch (err) {
+
+                console.error(
+                    "Login error:",
+                    err
+                );
+
+                error.textContent =
+                    err.message ||
+                    "Unable to connect to the server.";
+
+            }
+
+
+            finally {
+
+                button.disabled = false;
+
+                button.textContent =
+                    "Login to Dashboard";
+
+            }
+
+        }
+    );
+
+</script>
+    
+
+
+</body>
+
+</html>
