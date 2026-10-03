@@ -17,9 +17,21 @@ let cart =
     ) || [];
 
 
-let currentTable =
-    localStorage.getItem("oneBiteTable") || "05";
+const urlParams = new URLSearchParams(window.location.search);
 
+const qrTable = urlParams.get("table");
+
+let currentTable =
+    qrTable
+        ? String(parseInt(qrTable, 10)).padStart(2, "0")
+        : (localStorage.getItem("oneBiteTable") || "05");
+
+if (qrTable) {
+    localStorage.setItem(
+        "oneBiteTable",
+        currentTable
+    );
+}
 
 let currentOrder = null;
 
@@ -843,13 +855,35 @@ function confirmTable() {
 
 function updateTableDisplay() {
 
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const qrTable =
+        urlParams.get("table");
+
     const table =
-        localStorage.getItem(
-            "oneBiteTable"
-        ) || "05";
+        qrTable
+            ? String(
+                parseInt(qrTable, 10)
+              ).padStart(2, "0")
+            : (
+                localStorage.getItem(
+                    "oneBiteTable"
+                ) || "05"
+              );
 
     currentTable =
         table;
+
+    if (qrTable) {
+
+        localStorage.setItem(
+            "oneBiteTable",
+            table
+        );
+    }
 
 
     const header =
