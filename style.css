@@ -2311,3 +2311,115 @@ a {
     opacity: 1 !important;
     visibility: visible !important;
 }
+/* =========================================================
+   MOBILE VISUAL POLISH
+   Outside Food + Ready to Celebrate
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* ---------- OUTSIDE FOOD CARD ---------- */
+
+    .outside-food,
+    .outside-food h3,
+    .outside-food h4,
+    .outside-food .card-title,
+    .outside-food .title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .outside-food p,
+    .outside-food .card-text {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+
+    /* ---------- READY TO CELEBRATE ---------- */
+
+    .celebration-cta,
+    .celebration-cta h2,
+    .celebration-cta h3,
+    .celebration-cta .title,
+    .celebration-cta .cta-title {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .celebration-cta p,
+    .celebration-cta .cta-text {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+    }
+
+
+    /* Orange small heading */
+    .celebration-cta .eyebrow {
+        color: #f15a29 !important;
+        -webkit-text-fill-color: #f15a29 !important;
+        opacity: 1 !important;
+    }
+
+
+    /* Phone button */
+    .celebration-cta a,
+    .celebration-cta button {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+}
+/* =========================================================
+   MOBILE CELEBRATION CARD TEXT FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* ---------- OUTSIDE FOOD ---------- */
+
+    .celebration-card.warning h3 {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .celebration-card.warning p {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+
+    /* ---------- READY TO CELEBRATE ---------- */
+
+    .celebration-booking h3 {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .celebration-booking .eyebrow {
+        color: #f15a29 !important;
+        -webkit-text-fill-color: #f15a29 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .celebration-booking .celebration-call {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+}
