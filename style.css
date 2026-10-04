@@ -3315,3 +3315,40 @@ a {
     background: #ed5b2d !important;
     color: #ffffff !important;
 }
+/* =========================================
+   ALL ADMIN DASHBOARD BUTTONS
+   ========================================= */
+
+body.admin-page button {
+    border-radius: 999px !important;
+
+    padding: 10px 20px !important;
+
+    border: none !important;
+
+    background: #171513 !important;
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+body.admin-page button:hover {
+    background: #ed5b2d !important;
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+}
+
+/* SELECTED ADMIN TAB */
+
+body.admin-page .admin-tab.active {
+    background: #ed5b2d !important;
+    color: #ffffff !important;
+}
