@@ -3189,3 +3189,129 @@ a {
         letter-spacing: -1.5px !important;
     }
 }
+/* ===== FINAL ABOUT US FIX ===== */
+
+@media (max-width: 600px) {
+
+    .about-section .section-heading {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    .about-section .section-heading > div {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    .about-section h2 {
+        display: block !important;
+        width: max-content !important;
+        max-width: none !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        font-size: 45px !important;
+        line-height: 0.95 !important;
+        letter-spacing: -2px !important;
+
+        white-space: nowrap !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+}
+/* ===== FINAL CART FIX ===== */
+
+.cart-item {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) max-content !important;
+
+    align-items: center !important;
+    gap: 10px !important;
+
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+.cart-item > div:first-child {
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+.cart-item > div:first-child strong {
+    display: block !important;
+
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.cart-item-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 7px !important;
+
+    width: max-content !important;
+    min-width: max-content !important;
+}
+
+.cart-item-actions button {
+    flex: 0 0 30px !important;
+
+    width: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+
+    height: 30px !important;
+    min-height: 30px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.cart-item-actions strong {
+    flex: 0 0 auto !important;
+    min-width: 18px !important;
+
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+/* =========================================
+   ADMIN DASHBOARD PILL BUTTONS
+   ========================================= */
+
+.admin-tab {
+    border: none !important;
+    border-radius: 999px !important;
+
+    padding: 12px 24px !important;
+
+    background: #171513 !important;
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+    font-weight: 600 !important;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.admin-tab:hover {
+    background: #ed5b2d !important;
+    color: #ffffff !important;
+}
+
+.admin-tab.active {
+    background: #ed5b2d !important;
+    color: #ffffff !important;
+}
