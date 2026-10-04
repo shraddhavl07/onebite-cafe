@@ -198,8 +198,7 @@ const comboImage =
         description: "Chilled creamy cold coffee",
         price: 39,
         category: "Coffee",
-        image: "imagges/cold-coffee.jpg"
-    },
+image: "imagges/normal-cold-coffee.jpg"    },
 
     {
         id: 11,
@@ -207,8 +206,7 @@ const comboImage =
         description: "Cold coffee with delicious crush",
         price: 49,
         category: "Coffee",
-        image: "imagges/cold-coffee.jpg"
-    },
+image: "imagges/cold-coffee-crush.jpg"    },
 
     {
         id: 12,
@@ -216,7 +214,7 @@ const comboImage =
         description: "Cold coffee topped with ice cream",
         price: 59,
         category: "Coffee",
-        image: "imagges/cold-coffee.jpg"
+image: "imagges/cold-coffee-icecream.jpg"
     },
 
     {
@@ -239,8 +237,7 @@ const comboImage =
         description: "Classic vanilla ice cream",
         price: 49,
         category: "Ice-Cream",
-        image: "imagges/ice-cream.jpg"
-    },
+image: "imagges/vanilla-ice-cream.jpg"    },
 
     {
         id: 15,
@@ -248,8 +245,7 @@ const comboImage =
         description: "Rich chocolate ice cream",
         price: 49,
         category: "Ice-Cream",
-        image: "imagges/ice-cream.jpg"
-    },
+image: "imagges/chocolate-ice-cream.jpg"    },
 
     {
         id: 16,
@@ -257,8 +253,7 @@ const comboImage =
         description: "Creamy mango ice cream",
         price: 49,
         category: "Ice-Cream",
-        image: "imagges/ice-cream.jpg"
-    },
+image: "imagges/mango-ice-cream.jpg"    },
 
     {
         id: 17,
@@ -266,8 +261,7 @@ const comboImage =
         description: "Sweet strawberry ice cream",
         price: 49,
         category: "Ice-Cream",
-        image: "imagges/ice-cream.jpg"
-    },
+image: "imagges/strawberry-ice-cream.jpg"    },
 
 
     // =========================
@@ -380,8 +374,8 @@ const comboImage =
         description: "Classic creamy lassi",
         price: 59,
         category: "Lassi",
-        image: "imagges/lassi.jpg"
-    },
+image: "imagges/plain-lassi.jpg"
+ },
 
     {
         id: 29,
@@ -389,7 +383,7 @@ const comboImage =
         description: "Refreshing rose lassi",
         price: 69,
         category: "Lassi",
-        image: "imagges/lassi.jpg"
+image: "imagges/rose-lassi.jpg"
     },
 
     {
@@ -398,7 +392,7 @@ const comboImage =
         description: "Creamy mango lassi",
         price: 79,
         category: "Lassi",
-        image: "imagges/lassi.jpg"
+image: "imagges/mango-lassi.jpg"
     },
 
 
@@ -412,7 +406,7 @@ const comboImage =
         description: "Classic hot Maggi",
         price: 39,
         category: "Maggi & Momos",
-        image: "imagges/maggi.jpg"
+image: "imagges/plain-maggi.jpg"
     },
 
     {
@@ -421,8 +415,7 @@ const comboImage =
         description: "Maggi with melted cheese",
         price: 49,
         category: "Maggi & Momos",
-        image: "imagges/maggi.jpg"
-    },
+image: "imagges/cheese-maggi.jpg"    },
 
     {
         id: 33,
@@ -430,8 +423,7 @@ const comboImage =
         description: "Veg Maggi with cheese",
         price: 59,
         category: "Maggi & Momos",
-        image: "imagges/maggi.jpg"
-    },
+image: "imagges/veg-cheese-maggi.jpg"    },
 
     {
         id: 34,
@@ -439,7 +431,8 @@ const comboImage =
         description: "Steamed vegetable momos",
         price: 69,
         category: "Maggi & Momos",
-        image: "imagges/momos.jpg"
+       image: "imagges/mix-veg-momos.jpg"
+
     },
 
     {
@@ -448,7 +441,7 @@ const comboImage =
         description: "Soft paneer momos",
         price: 79,
         category: "Maggi & Momos",
-        image: "imagges/momos.jpg"
+       image: "imagges/paneer-momos.jpg"
     },
 
     {
@@ -457,7 +450,7 @@ const comboImage =
         description: "Cheese and corn momos",
         price: 89,
         category: "Maggi & Momos",
-        image: "imagges/momos.jpg"
+       image: "imagges/cheese-corn-momos.jpg"
     },
 
 
@@ -471,7 +464,7 @@ const comboImage =
         description: "Grilled cheese sandwich",
         price: 49,
         category: "Sandwich",
-        image: "imagges/sandwich.jpg"
+        image: "imagges/cheese-sandwich.jpg"
     },
 
     {
@@ -480,7 +473,7 @@ const comboImage =
         description: "Grilled vegetable sandwich",
         price: 59,
         category: "Sandwich",
-        image: "imagges/sandwich.jpg"
+        image: "imagges/veg-grill-sandwich.jpg"
     },
 
     {
@@ -498,7 +491,7 @@ const comboImage =
         description: "Spicy Schezwan sandwich",
         price: 79,
         category: "Sandwich",
-        image: "imagges/sandwich.jpg"
+        image: "imagges/schezwan-sandwich.jpg"
     },
 
     {
@@ -507,7 +500,7 @@ const comboImage =
         description: "Tandoori style sandwich",
         price: 89,
         category: "Sandwich",
-        image: "imagges/sandwich.jpg"
+        image: "imagges/tandoori-sandwich.jpg"
     },
 
     {
@@ -516,7 +509,7 @@ const comboImage =
         description: "Vegetable sandwich with cheese",
         price: 99,
         category: "Sandwich",
-        image: "imagges/sandwich.jpg"
+        image: "imagges/cheese-veg-sandwich.jpg"
     },
 
 
@@ -530,7 +523,7 @@ const comboImage =
         description: "Classic vegetable burger",
         price: 59,
         category: "Burger",
-        image: "imagges/burger.jpg"
+       image: "imagges/veg-burger.jpg"
     },
 
     {
@@ -539,7 +532,7 @@ const comboImage =
         description: "Crispy aloo tikki burger",
         price: 59,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/aloo-tikki-burger.jpg"
     },
 
     {
@@ -548,7 +541,7 @@ const comboImage =
         description: "Crispy veg burger",
         price: 69,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/crispy-burger.jpg"
     },
 
     {
@@ -557,7 +550,7 @@ const comboImage =
         description: "Spicy peri-peri burger",
         price: 69,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/peri-peri-burger.jpg"
     },
 
     {
@@ -566,7 +559,7 @@ const comboImage =
         description: "Spicy Schezwan burger",
         price: 79,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/schezwan-burger.jpg"
     },
 
     {
@@ -575,7 +568,7 @@ const comboImage =
         description: "Tandoori flavoured burger",
         price: 79,
         category: "Burger",
-        image: "imagges/burger.jpg"
+       image: "imagges/tandoori-burger.jpg"
     },
 
     {
@@ -584,7 +577,7 @@ const comboImage =
         description: "Burger with melted cheese",
         price: 89,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/cheese-burger.jpg"
     },
 
     {
@@ -593,7 +586,7 @@ const comboImage =
         description: "Aloo tikki with cheese",
         price: 89,
         category: "Burger",
-        image: "imagges/burger.jpg"
+        image: "imagges/aloo-cheese-burger.jpg"
     },
 
     {
@@ -602,7 +595,7 @@ const comboImage =
         description: "Loaded Maharaja style burger",
         price: 99,
         category: "Burger",
-        image: "imagges/burger.jpg"
+       image: "imagges/maharaja-burger.jpg"
     },
 
 
@@ -616,7 +609,7 @@ const comboImage =
         description: "Classic cheese Margherita pizza",
         price: 99,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+       image: "imagges/margherita-pizza.jpg"
     },
 
     {
@@ -625,7 +618,7 @@ const comboImage =
         description: "Fresh onion pizza",
         price: 109,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+        image: "imagges/onion-pizza.jpg"
     },
 
     {
@@ -634,7 +627,7 @@ const comboImage =
         description: "Fresh tomato pizza",
         price: 119,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+        image: "imagges/tomato-pizza.jpg"
     },
 
     {
@@ -643,7 +636,7 @@ const comboImage =
         description: "Loaded vegetable pizza",
         price: 129,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+        image: "imagges/veg-pizza.jpg"
     },
 
     {
@@ -652,7 +645,7 @@ const comboImage =
         description: "Sweet corn pizza",
         price: 139,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+       image: "imagges/corn-pizza.jpg"
     },
 
     {
@@ -661,7 +654,7 @@ const comboImage =
         description: "Paneer topped pizza",
         price: 149,
         category: "Pizza",
-        image: "imagges/pizza.jpg"
+       image: "imagges/paneer-pizza.jpg"
     },
 
 
@@ -675,7 +668,7 @@ const comboImage =
         description: "Crispy golden fries",
         price: 69,
         category: "Fries",
-        image: "imagges/fries.jpg"
+        image: "imagges/french-fries.jpg"
     },
 
     {
@@ -684,7 +677,7 @@ const comboImage =
         description: "Spicy masala fries",
         price: 69,
         category: "Fries",
-        image: "imagges/fries.jpg"
+image: "imagges/masala-fries.jpg"
     },
 
     {
@@ -693,7 +686,7 @@ const comboImage =
         description: "Tandoori flavoured fries",
         price: 79,
         category: "Fries",
-        image: "imagges/fries.jpg"
+       image: "imagges/tandoori-fries.jpg"
     },
 
     {
@@ -702,7 +695,7 @@ const comboImage =
         description: "Spicy peri-peri fries",
         price: 79,
         category: "Fries",
-        image: "imagges/fries.jpg"
+        image: "imagges/peri-peri-fries.jpg"
     },
 
     {
@@ -711,7 +704,7 @@ const comboImage =
         description: "Creamy chipotle fries",
         price: 89,
         category: "Fries",
-        image: "imagges/fries.jpg"
+        image: "imagges/chipotle-fries.jpg"
     },
 
     {
@@ -720,7 +713,7 @@ const comboImage =
         description: "Fries topped with cheese",
         price: 89,
         category: "Fries",
-        image: "imagges/fries.jpg"
+        image: "imagges/cheese-fries.jpg"
     }
 
 ];
@@ -1187,10 +1180,11 @@ function renderMenu() {
                 "menu-card";
 
 
-            const image =
-                getMenuImage(
-                    item.category
-                );
+        const image =
+    item.image ||
+    getMenuImage(
+        item.category
+    );
 
 
             card.innerHTML = `
@@ -1720,56 +1714,137 @@ function renderCart() {
                 );
 
 
-            row.className =
-                "cart-item";
+            row.className = "cart-item";
+
+row.style.cssText = `
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+`;
+
+row.innerHTML = `
+
+    <div
+        style="
+            flex:1 1 auto;
+            min-width:0;
+            overflow:hidden;
+        "
+    >
+
+        <strong
+            style="
+                display:block;
+                white-space:normal;
+                overflow-wrap:anywhere;
+            "
+        >
+            ${escapeHTML(item.name)}
+        </strong>
+
+        <small
+            style="
+                display:block;
+                white-space:nowrap;
+            "
+        >
+            ₹${item.price} × ${item.quantity}
+        </small>
+
+    </div>
 
 
-            row.innerHTML = `
+    <div
+        class="cart-item-actions"
+        style="
+            display:flex !important;
+            flex-direction:row !important;
+            flex-wrap:nowrap !important;
+            align-items:center !important;
+            justify-content:center !important;
+            gap:3px !important;
+            width:90px !important;
+            min-width:90px !important;
+            max-width:90px !important;
+            flex:0 0 90px !important;
+            height:32px !important;
+        "
+    >
 
-                <div>
-
-                    <strong>
-                        ${escapeHTML(
-                            item.name
-                        )}
-                    </strong>
-
-
-                    <small>
-                        ₹${item.price}
-                        ×
-                        ${item.quantity}
-                    </small>
-
-                </div>
-
-
-                <div class="cart-item-actions">
-
-                    <button
-                        type="button"
-                        onclick="decreaseQuantity('${item.id}')"
-                    >
-                        −
-                    </button>
+        <button
+            type="button"
+            onclick="decreaseQuantity('${item.id}')"
+            style="
+                display:flex !important;
+                align-items:center !important;
+                justify-content:center !important;
+                width:28px !important;
+                min-width:28px !important;
+                max-width:28px !important;
+                height:28px !important;
+                min-height:28px !important;
+                padding:0 !important;
+                margin:0 !important;
+                flex:0 0 28px !important;
+                border:none !important;
+                border-radius:50% !important;
+                background:#171513 !important;
+                color:#ffffff !important;
+            "
+        >
+            −
+        </button>
 
 
-                    <strong>
-                        ${item.quantity}
-                    </strong>
+        <strong
+            style="
+                display:flex !important;
+                align-items:center !important;
+                justify-content:center !important;
+                width:24px !important;
+                min-width:24px !important;
+                max-width:24px !important;
+                height:28px !important;
+                padding:0 !important;
+                margin:0 !important;
+                flex:0 0 24px !important;
+            "
+        >
+            ${item.quantity}
+        </strong>
 
 
-                    <button
-                        type="button"
-                        onclick="increaseQuantity('${item.id}')"
-                    >
-                        +
-                    </button>
+        <button
+            type="button"
+            onclick="increaseQuantity('${item.id}')"
+            style="
+                display:flex !important;
+                align-items:center !important;
+                justify-content:center !important;
+                width:28px !important;
+                min-width:28px !important;
+                max-width:28px !important;
+                height:28px !important;
+                min-height:28px !important;
+                padding:0 !important;
+                margin:0 !important;
+                flex:0 0 28px !important;
+                border:none !important;
+                border-radius:50% !important;
+                background:#171513 !important;
+                color:#ffffff !important;
+            "
+        >
+            +
+        </button>
 
-                </div>
+    </div>
 
-            `;
-
+`;
 
             container.appendChild(
                 row
