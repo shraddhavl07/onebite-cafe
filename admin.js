@@ -884,7 +884,7 @@ function generateQRCodes() {
 
     for (
         let table = 1;
-        table <= 20;
+        table <= 10;
         table++
     ) {
 
