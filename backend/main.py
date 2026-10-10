@@ -51,7 +51,6 @@ IS_POSTGRES = bool(DATABASE_URL)
 # =========================================================
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
-print("CORS ALLOWED ORIGINS:", ALLOWED_ORIGINS)
 
 if FRONTEND_URL:
     ALLOWED_ORIGINS = [
@@ -65,6 +64,8 @@ else:
         "http://127.0.0.1:8000",
         "http://localhost:8000"
     ]
+
+print("CORS ALLOWED ORIGINS:", ALLOWED_ORIGINS)
 
 
 app.add_middleware(
