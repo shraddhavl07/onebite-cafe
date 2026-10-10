@@ -51,6 +51,7 @@ IS_POSTGRES = bool(DATABASE_URL)
 # =========================================================
 
 FRONTEND_URL = os.getenv("FRONTEND_URL")
+print("CORS ALLOWED ORIGINS:", ALLOWED_ORIGINS)
 
 if FRONTEND_URL:
     ALLOWED_ORIGINS = [

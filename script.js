@@ -6,7 +6,7 @@
 
 "use strict";
 
-
+const API_BASE = "https://onebite-cafe.onrender.com";
 /* =========================================================
    GLOBAL DATA
 ========================================================= */
@@ -938,11 +938,7 @@ function updateTableDisplay() {
 async function loadMenu() {
 
     try {
-
-        const response =
-            await fetch(
-                "/api/menu"
-            );
+const response = await fetch(`${API_BASE}/api/menu`);
 
 
         if (!response.ok) {
@@ -2037,10 +2033,9 @@ async function placeOrder() {
 
     try {
 
-        const response =
-            await fetch(
-                "/api/orders",
-                {
+       const response = await fetch(
+    `${API_BASE}/api/orders`,
+    {
 
                     method:
                         "POST",

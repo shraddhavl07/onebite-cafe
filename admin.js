@@ -5,8 +5,7 @@
    ONE BITE CAFE
 ========================================================= */
 
-const API_BASE = "";
-
+const API_BASE = "https://onebite-cafe.onrender.com";
 
 /* =========================================================
    AUTH
