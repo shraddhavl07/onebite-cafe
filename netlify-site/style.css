@@ -215,7 +215,7 @@ a {
 /* Small decorative card */
 
 .hero::before {
-    content: "made\A fresh\A for you ✦";
+    content:"\A made\A fresh\A for you ✦";
 
     white-space: pre;
 
@@ -3357,7 +3357,90 @@ body.admin-page .admin-tab.active {
     background: #C9151E !important;
     color: #ffffff !important;
 }
-/* ONLY fix the hero circle and card */
+
+/* =========================================
+   ADMIN ORDER DATE FILTERS
+   ========================================= */
+
+.admin-order-filters {
+    margin: 18px 0 24px;
+}
+
+.admin-order-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-filter-btn {
+    padding: 10px 20px;
+    border: 1px solid #ded6c9;
+    border-radius: 999px;
+    background: #fffdf8;
+    color: #342c24;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.order-filter-btn:hover,
+.order-filter-btn.active {
+    background: #342c24;
+    color: #ffffff;
+    border-color: #342c24;
+}
+
+.admin-history-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.admin-history-date[hidden] {
+    display: none !important;
+}
+
+.admin-history-date input {
+    padding: 9px 12px;
+    border: 1px solid #ded6c9;
+    border-radius: 10px;
+    font: inherit;
+}
+
+.admin-history-date button {
+    padding: 9px 14px;
+    border: 1px solid #ded6c9;
+    border-radius: 999px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.admin-order-datetime {
+    margin: 10px 0;
+    color: #756b60;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .order-filter-btn {
+        padding: 9px 15px;
+        font-size: 13px;
+    }
+
+    .admin-history-date {
+        align-items: stretch;
+    }
+
+    .admin-history-date input {
+        max-width: 100%;
+    }
+}
+
+/* Homepage hero image */
 .hero::before {
     content: none !important;
     display: none !important;
