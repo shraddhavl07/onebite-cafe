@@ -73,28 +73,19 @@ a {
 
     border-radius: 50%;
 
-    background: #ed5b2d;
-    color: white;
+    object-fit: cover;
+    display: block;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-    font-weight: 900;
-
-    border-bottom: 7px solid #171513;
-
-    transform: rotate(-5deg);
+    border: none;
+    transform: none;
 }
-
 .brand strong {
     display: block;
 
     font-size: 34px;
     line-height: 1;
 
-    color: #e9572c;
+   color: #C9151E;
 
     letter-spacing: -1.5px;
 }
@@ -196,7 +187,7 @@ a {
 
     border-radius: 50%;
 
-    background: #ed5b2d;
+    background: #C9151E;
 
     right: 7%;
     top: -260px;
@@ -206,11 +197,25 @@ a {
     z-index: 0;
 }
 
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 550px;
+    height: 430px;
+    right: 7%;
+    top: 0;
+    border-radius: 50%;
+    background: url("imagges/hero-food-table.jpg.jpeg") center/cover no-repeat;
+    border-bottom: 18px solid #171513;
+    box-shadow: 10px 15px 0 #171513;
+    z-index: 1;
+}
+
 
 /* Small decorative card */
 
 .hero::before {
-    content:"\A made\A fresh\A for you ✦";
+    content: "made\A fresh\A for you ✦";
 
     white-space: pre;
 
@@ -248,7 +253,7 @@ a {
 }
 
 .eyebrow {
-    color: #e9572c;
+    color: #C9151E;
 
     font-size: 13px;
     font-weight: 800;
@@ -301,7 +306,7 @@ a {
 }
 
 .primary-btn:hover {
-    background: #ed5b2d;
+    background: #C9151E;
     transform: translateY(-2px);
 }
 
@@ -363,7 +368,7 @@ a {
 }
 
 .table-banner button:hover {
-    color: #ed5b2d;
+    color: #C9151E;
 }
 
 
@@ -527,7 +532,7 @@ a {
 
 .menu-card button:hover,
 .menu-info button:hover {
-    background: #ed5b2d;
+    background: #C9151E;
 }
 
 .loading {
@@ -541,7 +546,7 @@ a {
    ========================================================= */
 
 .combo-section {
-    background: #ed5b2d;
+    background: #C9151E;
     color: white;
 }
 
@@ -818,7 +823,7 @@ a {
 .modal input:focus,
 .modal select:focus,
 .modal textarea:focus {
-    border-color: #ed5b2d;
+    border-color: #C9151E;
 }
 
 
@@ -890,7 +895,7 @@ a {
 }
 
 .step.active span {
-    background: #ed5b2d;
+    background: #C9151E;
     color: white;
 }
 
@@ -995,13 +1000,13 @@ a {
     }
 
     .brand-logo {
-        width: 52px;
-        height: 52px;
+    width: 52px;
+    height: 52px;
 
-        font-size: 18px;
-
-        border-bottom-width: 5px;
-    }
+    object-fit: cover;
+    border: none;
+    transform: none;
+}
 
     .brand strong {
         font-size: 23px;
@@ -1261,7 +1266,7 @@ a {
 }
 
 #menuGrid button:hover {
-    background: #ed5b2d !important;
+    background: #C9151E !important;
     color: #ffffff !important;
     transform: translateY(-1px);
 }
@@ -1327,7 +1332,7 @@ a {
 }
 
 .celebration-text .eyebrow {
-    color: #ed5b2d;
+    color: #C9151E;
     margin-bottom: 15px;
 }
 
@@ -1362,7 +1367,7 @@ a {
     width: 42px;
     height: 42px;
 
-    background: #ed5b2d;
+    background: #C9151E;
     color: white;
 
     border-radius: 50%;
@@ -1402,13 +1407,13 @@ a {
     color: white;
     font-weight: 700;
 
-    border-bottom: 1px solid #ed5b2d;
+    border-bottom: 1px solid #C9151E;
 
     padding-bottom: 4px;
 }
 
 .celebration-instagram:hover {
-    color: #ed5b2d;
+    color: #C9151E;
 }
 
 
@@ -1421,7 +1426,7 @@ a {
     transform: rotate(2deg);
 
     box-shadow:
-        12px 12px 0 #ed5b2d;
+        12px 12px 0 #C9151E;
 
     max-width: 500px;
     margin-left: auto;
@@ -1499,7 +1504,7 @@ a {
 
     .celebration-poster {
         transform: rotate(0);
-        box-shadow: 7px 7px 0 #ed5b2d;
+        box-shadow: 7px 7px 0 #C9151E;
     }
 
     .celebration-buttons {
@@ -1633,9 +1638,9 @@ a {
 }
 
 .celebration-card.highlight {
-    background: #ed5b2d;
+    background: #C9151E;
     color: white;
-    border-color: #ed5b2d;
+    border-color: #C9151E;
 }
 
 .celebration-card.warning {
@@ -1652,7 +1657,7 @@ a {
 
     letter-spacing: 2px;
 
-    color: #ed5b2d;
+    color: #C9151E;
 
     margin-bottom: 30px;
 }
@@ -1662,7 +1667,7 @@ a {
 }
 
 .celebration-card.warning .celebration-number {
-    color: #ed5b2d;
+    color: #C9151E;
 }
 
 .celebration-card h3 {
@@ -1708,7 +1713,7 @@ a {
 }
 
 .celebration-booking .eyebrow {
-    color: #ed5b2d;
+    color: #C9151E;
 
     margin-bottom: 8px;
 }
@@ -1722,7 +1727,7 @@ a {
 }
 
 .celebration-call {
-    background: #ed5b2d;
+    background: #C9151E;
 
     color: white;
 
@@ -1826,7 +1831,7 @@ a {
 
 }
 .instagram-link {
-    color: #ed5b2d;
+    color: #C9151E;
     font-weight: 900;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -3307,12 +3312,12 @@ a {
 }
 
 .admin-tab:hover {
-    background: #ed5b2d !important;
+    background: #C9151E !important;
     color: #ffffff !important;
 }
 
 .admin-tab.active {
-    background: #ed5b2d !important;
+    background: #C9151E !important;
     color: #ffffff !important;
 }
 /* =========================================
@@ -3340,7 +3345,7 @@ body.admin-page button {
 }
 
 body.admin-page button:hover {
-    background: #ed5b2d !important;
+    background: #C9151E !important;
     color: #ffffff !important;
 
     transform: translateY(-1px);
@@ -3349,88 +3354,28 @@ body.admin-page button:hover {
 /* SELECTED ADMIN TAB */
 
 body.admin-page .admin-tab.active {
-    background: #ed5b2d !important;
+    background: #C9151E !important;
     color: #ffffff !important;
 }
-
-/* =========================================
-   ADMIN ORDER DATE FILTERS
-   ========================================= */
-
-.admin-order-filters {
-    margin: 18px 0 24px;
-}
-
-.admin-order-filter-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.order-filter-btn {
-    padding: 10px 20px;
-    border: 1px solid #ded6c9;
-    border-radius: 999px;
-    background: #fffdf8;
-    color: #342c24;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.order-filter-btn:hover,
-.order-filter-btn.active {
-    background: #342c24;
-    color: #ffffff;
-    border-color: #342c24;
-}
-
-.admin-history-date {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-top: 14px;
-}
-
-.admin-history-date[hidden] {
+/* ONLY fix the hero circle and card */
+.hero::before {
+    content: none !important;
     display: none !important;
 }
 
-.admin-history-date input {
-    padding: 9px 12px;
-    border: 1px solid #ded6c9;
-    border-radius: 10px;
-    font: inherit;
-}
-
-.admin-history-date button {
-    padding: 9px 14px;
-    border: 1px solid #ded6c9;
-    border-radius: 999px;
-    background: #ffffff;
-    cursor: pointer;
-}
-
-.admin-order-datetime {
-    margin: 10px 0;
-    color: #756b60;
-    font-size: 13px;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-}
-
-@media (max-width: 480px) {
-    .order-filter-btn {
-        padding: 9px 15px;
-        font-size: 13px;
-    }
-
-    .admin-history-date {
-        align-items: stretch;
-    }
-
-    .admin-history-date input {
-        max-width: 100%;
-    }
+.hero::after {
+    content: "" !important;
+    position: absolute;
+    width: 410px;
+    height: 455px;
+    right: 7%;
+    top: 0;
+    border: none !important;
+    border-radius: 30px;
+    background-image: url("imagges/food-table.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: none !important;
+    z-index: 1;
 }
