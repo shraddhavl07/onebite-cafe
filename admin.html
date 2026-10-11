@@ -479,10 +479,7 @@
 
 
         <div class="admin-stat">
-
-            <small>
-                TODAY'S ORDERS
-            </small>
+<small id="adminOrdersLabel">TODAY'S ORDERS</small>
 
             <strong id="adminOrders">
                 0
@@ -494,9 +491,7 @@
 
         <div class="admin-stat">
 
-            <small>
-                TODAY'S SALES
-            </small>
+            <small id="adminSalesLabel">TODAY'S SALES</small>
 
             <strong id="adminSales">
                 ₹0
@@ -638,6 +633,60 @@
 
         </div>
 
+
+<!-- ORDER DATE FILTERS -->
+<div class="admin-order-filters">
+
+    <div class="admin-order-filter-buttons">
+
+        <button
+            type="button"
+            class="order-filter-btn active"
+            onclick="setAdminOrderPeriod('today', this)"
+        >
+            Today
+        </button>
+
+        <button
+            type="button"
+            class="order-filter-btn"
+            onclick="setAdminOrderPeriod('yesterday', this)"
+        >
+            Yesterday
+        </button>
+
+        <button
+            type="button"
+            class="order-filter-btn"
+            onclick="setAdminOrderPeriod('history', this)"
+        >
+            History
+        </button>
+
+    </div>
+
+    <div
+        id="adminHistoryDateWrap"
+        class="admin-history-date"
+        hidden
+    >
+        <label for="adminHistoryDate">Filter by date</label>
+
+        <input
+            type="date"
+            id="adminHistoryDate"
+            onchange="setAdminHistoryDate(this.value)"
+        >
+
+        <button
+            type="button"
+            onclick="clearAdminHistoryDate()"
+        >
+            Show All
+        </button>
+    </div>
+
+</div>
 
 
         <div id="adminOrderList">

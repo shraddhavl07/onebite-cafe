@@ -2397,8 +2397,7 @@ function showTracking() {
 
             const response =
                 await fetch(
-                    `/api/orders/${orderId}/track`
-                );
+                    `https://onebite-cafe.onrender.com/api/orders/${orderId}/track`);
 
 
             if (!response.ok) {
@@ -2448,6 +2447,20 @@ function showTracking() {
     /* Get status immediately */
 
     refreshTrackingStatus();
+    
+
+
+/* Refresh status every 5 seconds */
+if (window.trackingRefreshInterval) {
+    clearInterval(window.trackingRefreshInterval);
+}
+
+window.trackingRefreshInterval = setInterval(() => {
+    if (!modal.classList.contains("hidden")) {
+        refreshTrackingStatus();
+    }
+}, 5000);
+
 
 
     /* =====================================================
@@ -3341,14 +3354,9 @@ async function loadAdminDashboard() {
                 );
 
 
-        renderAdminOrders(
-            orders
-        );
+        adminOrdersCache = orders;
 
-
-        updateAdminStatistics(
-            orders
-        );
+        refreshAdminOrderPeriodView();
 
 
     }
@@ -3452,7 +3460,7 @@ function renderAdminOrders(
                 order.table_number ||
                 "—";
 
-
+const orderDateTime = formatAdminOrderDateTime(order);
             const status =
                 order.status ||
                 "Received";
@@ -3536,6 +3544,11 @@ function renderAdminOrders(
 
                 </div>
 
+
+<div class="admin-order-datetime">
+    <strong>Placed:</strong>
+    ${escapeHTML(orderDateTime)}
+</div>
 
                 <div class="admin-order-info">
 
@@ -4404,3 +4417,262 @@ document.addEventListener(
 /* =========================================================
    END OF ADMIN SCRIPT
 ========================================================= */
+
+/* =========================================
+   ADMIN ORDER DATE FILTERS
+   ========================================= */
+
+let adminOrdersCache = [];
+let adminOrderPeriod = "today";
+let adminHistoryDate = "";
+
+
+/* Parse an order's date safely */
+function parseAdminOrderDate(value) {
+    if (!value) return null;
+
+    if (typeof value === "string") {
+        const text = value.trim();
+
+        // Treat timestamps without a timezone as UTC.
+        // This matches the usual server/database timestamp format.
+        if (
+            /^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}/.test(text) &&
+            !/(Z|[+-]\d{2}:\d{2})$/i.test(text)
+        ) {
+            value = text.replace(" ", "T") + "Z";
+        }
+    }
+
+    const date = new Date(value);
+
+    return Number.isNaN(date.getTime()) ? null : date;
+}
+
+
+/* Get a date key using India time */
+function getCafeDateKey(value) {
+    const date = value instanceof Date
+        ? value
+        : parseAdminOrderDate(value);
+
+    if (!date) return "";
+
+    const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).formatToParts(date);
+
+    const part = type =>
+        parts.find(item => item.type === type).value;
+
+    return `${part("year")}-${part("month")}-${part("day")}`;
+}
+
+
+/* Today's date in India */
+function getCafeTodayKey() {
+    return getCafeDateKey(new Date());
+}
+
+
+/* Yesterday's date in India */
+function getCafeYesterdayKey() {
+    const parts = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).formatToParts(new Date());
+
+    const getPart = type =>
+        Number(parts.find(item => item.type === type).value);
+
+    const yesterday = new Date(Date.UTC(
+        getPart("year"),
+        getPart("month") - 1,
+        getPart("day") - 1
+    ));
+
+    return [
+        yesterday.getUTCFullYear(),
+        String(yesterday.getUTCMonth() + 1).padStart(2, "0"),
+        String(yesterday.getUTCDate()).padStart(2, "0")
+    ].join("-");
+}
+
+
+/* Choose which orders should be displayed */
+function getAdminOrdersForSelectedPeriod() {
+    if (adminOrderPeriod === "history" && !adminHistoryDate) {
+        // History shows all orders until a date is selected.
+        return adminOrdersCache.slice();
+    }
+
+    let targetDate = "";
+
+    if (adminOrderPeriod === "today") {
+        targetDate = getCafeTodayKey();
+    } else if (adminOrderPeriod === "yesterday") {
+        targetDate = getCafeYesterdayKey();
+    } else {
+        targetDate = adminHistoryDate;
+    }
+
+    return adminOrdersCache.filter(order => {
+        const timestamp =
+            order.created_at ||
+            order.createdAt ||
+            order.timestamp ||
+            order.date;
+
+        return getCafeDateKey(timestamp) === targetDate;
+    });
+}
+
+
+/* Handle Today, Yesterday and History buttons */
+function setAdminOrderPeriod(period, button) {
+    adminOrderPeriod = period;
+
+    document.querySelectorAll(".order-filter-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+
+    const dateWrap =
+        document.getElementById("adminHistoryDateWrap");
+
+    if (dateWrap) {
+        dateWrap.hidden = period !== "history";
+    }
+
+    refreshAdminOrderPeriodView();
+}
+
+
+/* Filter History by a selected date */
+function setAdminHistoryDate(value) {
+    adminHistoryDate = value || "";
+    refreshAdminOrderPeriodView();
+}
+
+
+/* Clear the History date filter */
+function clearAdminHistoryDate() {
+    adminHistoryDate = "";
+
+    const dateInput =
+        document.getElementById("adminHistoryDate");
+
+    if (dateInput) {
+        dateInput.value = "";
+    }
+
+    refreshAdminOrderPeriodView();
+}
+
+/* =========================================
+   REFRESH FILTERED ORDERS AND STATISTICS
+   ========================================= */
+
+function refreshAdminOrderPeriodView() {
+    const filteredOrders =
+        getAdminOrdersForSelectedPeriod();
+
+    renderAdminOrders(filteredOrders);
+
+    updateAdminPeriodStats(
+        adminOrdersCache,
+        filteredOrders
+    );
+}
+
+
+function updateAdminPeriodStats(allOrders, visibleOrders) {
+    const ordersElement =
+        document.getElementById("adminOrders");
+
+    const salesElement =
+        document.getElementById("adminSales");
+
+    const activeElement =
+        document.getElementById("adminActive");
+
+    const sales = visibleOrders.reduce(
+        (sum, order) =>
+            sum + Number(order.total || 0),
+        0
+    );
+
+    const ordersLabel =
+    document.getElementById("adminOrdersLabel");
+
+const salesLabel =
+    document.getElementById("adminSalesLabel");
+
+let labelPrefix = "TODAY'S";
+
+if (adminOrderPeriod === "yesterday") {
+    labelPrefix = "YESTERDAY'S";
+} else if (adminOrderPeriod === "history") {
+    labelPrefix = adminHistoryDate
+        ? "SELECTED DAY"
+        : "ALL-TIME";
+}
+
+if (ordersLabel) {
+    ordersLabel.textContent = `${labelPrefix} ORDERS`;
+}
+
+if (salesLabel) {
+    salesLabel.textContent = `${labelPrefix} SALES`;
+}
+
+    const active = allOrders.filter(order =>
+        order.status !== "Served" &&
+        order.status !== "Cancelled"
+    ).length;
+
+    if (ordersElement) {
+        ordersElement.textContent = visibleOrders.length;
+    }
+
+    if (salesElement) {
+        salesElement.textContent = `₹${sales.toFixed(2)}`;
+    }
+
+    if (activeElement) {
+        activeElement.textContent = active;
+    }
+}
+
+/* Format order date and time using India time */
+function formatAdminOrderDateTime(order) {
+    const value =
+        order.created_at ||
+        order.createdAt ||
+        order.timestamp ||
+        order.date;
+
+    const date = parseAdminOrderDate(value);
+
+    if (!date) {
+        return "Date/time unavailable";
+    }
+
+    return new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    }).format(date);
+}
