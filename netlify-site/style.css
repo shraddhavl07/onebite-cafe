@@ -3558,3 +3558,51 @@ body.admin-page .admin-tab.active {
     }
 }
 
+
+.cafe-location {
+    text-align: center;
+    padding: 30px 20px;
+    color: #f5eee7;
+}
+
+.cafe-location h2 {
+    margin-bottom: 12px;
+}
+
+.cafe-location p {
+    margin-bottom: 20px;
+}
+
+.location-btn {
+    display: inline-block;
+    padding: 12px 22px;
+    background: #d99a52;
+    color: #171513;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.location-btn:hover {
+    background: #efb66f;
+}
+
+/* Customer order status notification */
+.tracking-notification {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    margin: 18px 0;
+    border-radius: 12px;
+    background: #fff3df;
+    color: #684319;
+    border: 1px solid #f0d4a8;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.notification-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}

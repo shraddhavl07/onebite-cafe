@@ -2031,86 +2031,38 @@ async function placeOrder() {
     };
 
 
-    try {
+    
+try {
+    const response = await fetch(`${API_BASE}/api/orders`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(orderData)
+    });
 
-       const response = await fetch(
-    `${API_BASE}/api/orders`,
-    {
-
-                    method:
-                        "POST",
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-                    body:
-                        JSON.stringify(
-                            orderData
-                        )
-
-                }
-            );
-
-
-        if (response.ok) {
-
-            const data =
-                await response.json();
-
-
-            currentOrder = {
-
-                ...orderData,
-
-                orderNumber:
-
-                    data.orderNumber ||
-
-                    data.order_id ||
-
-                    data.id ||
-
-                    generateOrderNumber()
-
-            };
-
-        }
-
-        else {
-
-            currentOrder = {
-
-                ...orderData,
-
-                orderNumber:
-                    generateOrderNumber()
-
-            };
-
-        }
-
+    if (!response.ok) {
+        showToast("Could not place your order. Please try again.");
+        return;
     }
 
-    catch (error) {
+    const data = await response.json();
+    const realOrderId = data.orderNumber || data.order_id || data.id;
 
-        console.log(
-            "Order API unavailable:",
-            error
-        );
+    if (!realOrderId) {
+        showToast("Order ID missing. Please contact staff.");
+        return;
+    }
 
+    currentOrder = {
+        ...orderData,
+        orderNumber: realOrderId
+    };
 
-        currentOrder = {
-
-            ...orderData,
-
-            orderNumber:
-                generateOrderNumber()
-
-        };
+} catch (error) {
+    console.error("Order API unavailable:", error);
+    showToast("Unable to connect to the server. Please try again.");
+    return;
 
     }
 
@@ -2291,6 +2243,26 @@ function showTracking() {
     ===================================================== */
 
     function updateTrackingStatus(status) {
+        
+        // Update customer notification message
+        const notificationText = document.getElementById("trackingNotificationText");
+        const notificationBox = document.getElementById("trackingNotification");
+
+        const messages = {
+            "Received": "✅ Your order has been received!",
+            "Being Made": "👨‍🍳 Your order is being prepared!",
+            "Ready": "🔔 Your order is ready! Please collect it.",
+            "Served": "🍽️ Your order has been served. Enjoy your meal!"
+        };
+
+        if (notificationText && messages[status]) {
+            notificationText.textContent = messages[status];
+        }
+
+        if (notificationBox && messages[status]) {
+            notificationBox.style.display = "flex";
+        }
+
 
         /* Remove active from all steps */
 
@@ -2450,16 +2422,7 @@ function showTracking() {
     
 
 
-/* Refresh status every 5 seconds */
-if (window.trackingRefreshInterval) {
-    clearInterval(window.trackingRefreshInterval);
-}
 
-window.trackingRefreshInterval = setInterval(() => {
-    if (!modal.classList.contains("hidden")) {
-        refreshTrackingStatus();
-    }
-}, 5000);
 
 
 
@@ -2499,35 +2462,20 @@ window.trackingRefreshInterval = setInterval(() => {
    CLOSE TRACKING
 ========================================================= */
 
+
 function closeTracking() {
+    const modal = document.getElementById("trackingModal");
 
-    const modal =
-        document.getElementById(
-            "trackingModal"
-        );
-
-
-    /* Stop automatic status checking */
-
+    // Stop automatic status checking
     if (trackingInterval) {
-
-        clearInterval(
-            trackingInterval
-        );
-
+        clearInterval(trackingInterval);
         trackingInterval = null;
-
     }
 
-
+    // Close the tracking popup
     if (modal) {
-
-        modal.classList.add(
-            "hidden"
-        );
-
+        modal.classList.add("hidden");
     }
-
 }
 
 
@@ -4675,4 +4623,75 @@ function formatAdminOrderDateTime(order) {
         minute: "2-digit",
         hour12: true
     }).format(date);
+}
+
+let trackingStatusTimer = null;
+let lastCustomerTrackingStatus = null;
+
+async function checkCustomerOrderStatus() {
+    const savedOrder = localStorage.getItem("oneBiteLastOrder");
+
+    if (!savedOrder) return;
+
+    let order;
+
+    try {
+        order = JSON.parse(savedOrder);
+    } catch (error) {
+        console.error("Could not read saved order:", error);
+        return;
+    }
+
+    const orderId = order.orderNumber;
+
+    if (!orderId || !Number.isInteger(Number(orderId))) {
+        console.error("A valid order ID is not available.");
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `${API_BASE}/api/orders/${encodeURIComponent(orderId)}/track`,
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+        const status = data.status;
+
+        const validStatuses = [
+            "Received",
+            "Being Made",
+            "Ready",
+            "Served"
+        ];
+
+        if (!validStatuses.includes(status)) return;
+
+        if (status !== lastCustomerTrackingStatus) {
+            updateTrackingStatus(status);
+            lastCustomerTrackingStatus = status;
+        }
+    } catch (error) {
+        console.error("Could not refresh order status:", error);
+    }
+}
+
+function startCustomerOrderStatusUpdates() {
+    if (trackingStatusTimer) {
+        clearInterval(trackingStatusTimer);
+    }
+
+    lastCustomerTrackingStatus = null;
+
+    checkCustomerOrderStatus();
+    trackingStatusTimer = setInterval(checkCustomerOrderStatus, 5000);
+}
+
+function stopCustomerOrderStatusUpdates() {
+    if (trackingStatusTimer) {
+        clearInterval(trackingStatusTimer);
+        trackingStatusTimer = null;
+    }
 }

@@ -50,20 +50,19 @@ IS_POSTGRES = bool(DATABASE_URL)
 # CORS
 # =========================================================
 
-FRONTEND_URL = os.getenv("FRONTEND_URL")
 
-if FRONTEND_URL:
-    ALLOWED_ORIGINS = [
-        FRONTEND_URL.rstrip("/")
-    ]
-else:
-    ALLOWED_ORIGINS = [
-        "http://localhost:3000",
-        "http://localhost:5500",
-        "http://127.0.0.1:5500",
-        "http://127.0.0.1:8000",
-        "http://localhost:8000"
-    ]
+FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+
+ALLOWED_ORIGINS = [
+    "https://onebite-cafee.netlify.app",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
+
+if FRONTEND_URL.strip():
+    frontend_origin = FRONTEND_URL.strip().rstrip("/")
+    if frontend_origin not in ALLOWED_ORIGINS:
+        ALLOWED_ORIGINS.append(frontend_origin)
 
 print("CORS ALLOWED ORIGINS:", ALLOWED_ORIGINS)
 
