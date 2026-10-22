@@ -713,6 +713,71 @@ def get_single_order(
         connection.close()
 
 
+
+
+@app.delete("/api/orders/{order_id}")
+def delete_order(order_id: int, request: Request):
+
+    # Only authorized staff can delete orders.
+    require_staff(request)
+
+    connection = get_connection()
+    cursor = connection.cursor()
+
+    try:
+        placeholder = "%s" if IS_POSTGRES else "?"
+
+        # Check that the order exists.
+        cursor.execute(
+            f"SELECT id FROM orders WHERE id = {placeholder}",
+            (order_id,)
+        )
+
+        if not cursor.fetchone():
+            raise HTTPException(
+                status_code=404,
+                detail=f"Order {order_id} not found"
+            )
+
+        # Delete the order's items first.
+        cursor.execute(
+            f"DELETE FROM order_items WHERE order_id = {placeholder}",
+            (order_id,)
+        )
+
+        # Then delete the order itself.
+        cursor.execute(
+            f"DELETE FROM orders WHERE id = {placeholder}",
+            (order_id,)
+        )
+
+        connection.commit()
+
+        print(f"Order #{order_id} deleted successfully")
+
+        return {
+            "message": "Order deleted successfully",
+            "order_id": order_id
+        }
+
+    except HTTPException:
+        connection.rollback()
+        raise
+
+    except Exception as error:
+        connection.rollback()
+
+        print("DELETE ORDER ERROR:", repr(error))
+
+        raise HTTPException(
+            status_code=500,
+            detail="Could not delete order"
+        )
+
+    finally:
+        cursor.close()
+        connection.close()
+
 # =========================================================
 # UPDATE ORDER STATUS
 # STAFF ONLY

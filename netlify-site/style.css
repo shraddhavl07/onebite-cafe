@@ -3606,3 +3606,23 @@ body.admin-page .admin-tab.active {
     font-size: 22px;
     flex-shrink: 0;
 }
+
+.delete-order-btn {
+    background: #b42318;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.delete-order-btn:hover {
+    background: #8f1d14;
+}
+
+.delete-order-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

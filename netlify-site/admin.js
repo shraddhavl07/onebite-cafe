@@ -521,7 +521,13 @@ function renderAdminOrders(orders) {
             `
             : ""
     }
-
+ <button
+        class="delete-order-btn"
+        type="button"
+        onclick="deleteAdminOrder(${order.id})"
+    >
+        Delete Order
+    </button>
 </div>
         `;
 
@@ -531,6 +537,45 @@ function renderAdminOrders(orders) {
     });
 
 }
+
+async function deleteAdminOrder(orderId) {
+    const confirmed = window.confirm(
+        "Are you sure you want to delete this order? This action cannot be undone."
+    );
+
+    if (!confirmed) return;
+
+    try {
+        const response = await fetch(
+            `https://onebite-cafe.onrender.com/api/orders/${orderId}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("oneBiteStaffToken")}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Could not delete order");
+        }
+
+        alert("Order deleted successfully.");
+
+        // Refresh the order list using your existing loader.
+        if (typeof loadAdminOrders === "function") {
+            await loadAdminOrders();
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.error("Delete order error:", error);
+        alert("Could not delete the order. Please try again.");
+    }
+}
+
 
 
 /* =========================================================
