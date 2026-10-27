@@ -2512,249 +2512,144 @@ function closeOrderSuccess() {
 ========================================================= */
 
 
+
 /* =========================================================
    REVIEWS
 ========================================================= */
 
+const REVIEW_API = "https://onebite-cafe.onrender.com/api/reviews";
+
 function openReview() {
-
-    const modal =
-        document.getElementById(
-            "reviewModal"
-        );
-
-
-    if (modal) {
-
-        modal.classList.remove(
-            "hidden"
-        );
-
-    }
-
+    const modal = document.getElementById("reviewModal");
+    if (modal) modal.classList.remove("hidden");
 }
-
-
-/* =========================================================
-   CLOSE REVIEW
-========================================================= */
 
 function closeReview() {
-
-    const modal =
-        document.getElementById(
-            "reviewModal"
-        );
-
-
-    if (modal) {
-
-        modal.classList.add(
-            "hidden"
-        );
-
-    }
-
+    const modal = document.getElementById("reviewModal");
+    if (modal) modal.classList.add("hidden");
 }
 
-
-/* =========================================================
-   SUBMIT REVIEW
-========================================================= */
-
+/* SUBMIT REVIEW */
 async function submitReview() {
-
-    const name =
-        document
-            .getElementById(
-                "reviewName"
-            )
-            ?.value
-            .trim();
-
-
-    const rating =
-        document
-            .getElementById(
-                "reviewRating"
-            )
-            ?.value;
-
-
-    const text =
-        document
-            .getElementById(
-                "reviewText"
-            )
-            ?.value
-            .trim();
-
+    const name = document.getElementById("reviewName")?.value.trim();
+    const rating = Number(document.getElementById("reviewRating")?.value);
+    const text = document.getElementById("reviewText")?.value.trim();
 
     if (!name) {
-
-        showToast(
-            "Please enter your name."
-        );
-
+        showToast("Please enter your name.");
         return;
-
     }
-
 
     if (!text) {
-
-        showToast(
-            "Please write a review."
-        );
-
+        showToast("Please write a review.");
         return;
-
     }
 
-
-    const review = {
-
-        name:
-            name,
-
-        rating:
-            Number(rating),
-
-        text:
-            text,
-
-        createdAt:
-            new Date().toISOString()
-
-    };
-
-
-    /*
-       SAVE LOCALLY
-    */
-
-    const reviews =
-
-        JSON.parse(
-
-            localStorage.getItem(
-                "oneBiteReviews"
-            )
-
-        ) || [];
-
-
-    reviews.push(
-        review
-    );
-
-
-    localStorage.setItem(
-
-        "oneBiteReviews",
-
-        JSON.stringify(
-            reviews
-        )
-
-    );
-
-
-    /*
-       TRY BACKEND
-    */
+    if (!Number.isInteger(rating) || rating < 1 || rating > 5) {
+        showToast("Please select a valid rating.");
+        return;
+    }
 
     try {
+        const response = await fetch(REVIEW_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, rating, text })
+        });
 
-        await fetch(
+        const data = await response.json().catch(() => ({}));
 
-            "/api/reviews",
+        if (!response.ok) {
+            throw new Error(data.detail || "Could not submit your review.");
+        }
 
-            {
+        closeReview();
+        showToast("Thank you for your review!");
 
-                method:
-                    "POST",
+        const nameInput = document.getElementById("reviewName");
+        const textInput = document.getElementById("reviewText");
 
-                headers: {
+        if (nameInput) nameInput.value = "";
+        if (textInput) textInput.value = "";
 
-                    "Content-Type":
-                        "application/json"
+        await loadReviews();
 
-                },
-
-                body:
-                    JSON.stringify(
-                        review
-                    )
-
-            }
-
-        );
-
+    } catch (error) {
+        console.error("SUBMIT REVIEW ERROR:", error);
+        showToast("Could not submit review. Please try again.");
     }
-
-    catch (error) {
-
-        console.log(
-            "Review API unavailable."
-        );
-
-    }
-
-
-    closeReview();
-
-
-    showToast(
-        "Thank you for your review!"
-    );
-
-
-    const nameInput =
-        document.getElementById(
-            "reviewName"
-        );
-
-
-    const textInput =
-        document.getElementById(
-            "reviewText"
-        );
-
-
-    if (nameInput) {
-
-        nameInput.value =
-            "";
-
-    }
-
-
-    if (textInput) {
-
-        textInput.value =
-            "";
-
-    }
-
 }
 
 
-/* =========================================================
-   LOAD REVIEWS
-========================================================= */
+/* LOAD AND DISPLAY CUSTOMER REVIEWS */
+async function loadReviews() {
+    const grid = document.getElementById("reviewsGrid");
 
-function loadReviews() {
+    try {
+        const response = await fetch(REVIEW_API);
 
-    /*
-       The default reviews are already
-       present in index.html.
+        if (!response.ok) {
+            throw new Error(`Reviews API returned ${response.status}`);
+        }
 
-       Customer-submitted reviews are
-       saved in localStorage.
-    */
+        const data = await response.json();
+        const reviews = Array.isArray(data)
+            ? data
+            : (data.reviews || []);
 
+        if (!grid) return reviews;
+
+        if (reviews.length === 0) {
+            grid.innerHTML = `
+                <p class="loading">
+                    Be the first to share your experience!
+                </p>
+            `;
+            return reviews;
+        }
+
+        grid.innerHTML = reviews.map(review => {
+            const rating = Math.max(
+                1,
+                Math.min(5, Number(review.rating) || 5)
+            );
+
+            return `
+                <div class="review-card">
+                    <div class="review-stars">
+                        ${"⭐".repeat(rating)}
+                    </div>
+
+                    <p class="review-text">
+                        ${escapeHTML(review.text || review.review_text || "")}
+                    </p>
+
+                    <strong>
+                        — ${escapeHTML(review.name || "Customer")}
+                    </strong>
+                </div>
+            `;
+        }).join("");
+
+        console.log("Customer reviews displayed:", reviews.length);
+        return reviews;
+
+    } catch (error) {
+        console.error("LOAD REVIEWS ERROR:", error);
+
+        if (grid) {
+            grid.innerHTML = `
+                <p class="loading">
+                    Reviews are temporarily unavailable.
+                    Please try again later.
+                </p>
+            `;
+        }
+
+        return [];
+    }
 }
+
 
 
 /* =========================================================
