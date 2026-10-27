@@ -1282,7 +1282,7 @@ const comboItems = [
     {
         id: "combo2",
         name:
-            "1 Cheese Burger + 2 Cold Coffee",
+            "Cheese Burger + Cold Coffee",
         description:
             "Cheese burger with two cold coffees",
         price: 99
