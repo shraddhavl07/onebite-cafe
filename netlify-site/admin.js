@@ -916,106 +916,76 @@ async function loadAdminMenu() {
 }
 
 
+
 /* =========================================================
    REVIEWS
 ========================================================= */
 
 async function loadAdminReviews() {
-
-    const container =
-        document.getElementById(
-            "adminReviewList"
-        );
-
-
+    const container = document.getElementById("adminReviewList");
     if (!container) return;
 
+    container.innerHTML = "<p>Loading reviews...</p>";
 
-    container.innerHTML =
-        "<p>Loading reviews...</p>";
+    const reviewsElement = document.getElementById("adminReviews");
 
-
-    /*
-       Your current backend does not contain
-       GET /api/reviews yet.
-
-       So don't keep loading forever.
-    */
-
-    const reviews =
-        JSON.parse(
-            localStorage.getItem(
-                "oneBiteReviews"
-            )
-        ) || [];
-
-
-    const reviewsElement =
-        document.getElementById(
-            "adminReviews"
+    try {
+        const response = await fetch(
+            "https://onebite-cafe.onrender.com/api/reviews"
         );
 
+        if (!response.ok) {
+            throw new Error(`Reviews API returned ${response.status}`);
+        }
 
-    if (reviewsElement) {
+        const data = await response.json();
+        const reviews = Array.isArray(data)
+            ? data
+            : (data.reviews || []);
 
-        reviewsElement.textContent =
-            reviews.length;
+        if (reviewsElement) {
+            reviewsElement.textContent = reviews.length;
+        }
 
-    }
+        if (reviews.length === 0) {
+            container.innerHTML = `
+                <div class="empty-admin">
+                    <h3>No reviews yet</h3>
+                    <p>Customer reviews will appear here.</p>
+                </div>
+            `;
+            return;
+        }
 
+        container.innerHTML = reviews.map(review => {
+            const rating = Math.max(
+                0,
+                Math.min(5, Number(review.rating) || 0)
+            );
 
-    if (!reviews.length) {
+            return `
+                <div class="admin-review-card">
+                    <strong>${escapeAdminHTML(review.name || "Customer")}</strong>
+                    <span>${"★".repeat(rating)}${"☆".repeat(5 - rating)}</span>
+                    <p>${escapeAdminHTML(review.text || review.review_text || "")}</p>
+                </div>
+            `;
+        }).join("");
+
+    } catch (error) {
+        console.error("LOAD ADMIN REVIEWS ERROR:", error);
+
+        if (reviewsElement) {
+            reviewsElement.textContent = "—";
+        }
 
         container.innerHTML = `
-
             <div class="empty-admin">
-
-                <h3>
-                    No reviews yet
-                </h3>
-
-                <p>
-                    Customer reviews will appear here.
-                </p>
-
+                <h3>Reviews unavailable</h3>
+                <p>Could not load customer reviews. Please try again.</p>
             </div>
-
         `;
-
-        return;
-
     }
-
-
-    container.innerHTML =
-        reviews.map(review => `
-
-            <div class="admin-review-card">
-
-                <strong>
-                    ${escapeAdminHTML(
-                        review.name
-                    )}
-                </strong>
-
-                <span>
-                    ${"★".repeat(
-                        Number(
-                            review.rating || 0
-                        )
-                    )}
-                </span>
-
-                <p>
-                    ${escapeAdminHTML(
-                        review.text
-                    )}
-                </p>
-
-            </div>
-
-        `).join("");
-
 }
 
 

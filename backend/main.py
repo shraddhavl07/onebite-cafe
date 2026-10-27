@@ -891,6 +891,134 @@ def update_order_status(
 
 
 # =========================================================
+# CUSTOMER REVIEWS
+# =========================================================
+
+@app.post("/api/reviews")
+async def create_review(request: Request):
+
+    try:
+        data = await request.json()
+
+        name = str(data.get("name", "")).strip()
+        review_text = str(
+            data.get("text", data.get("review_text", ""))
+        ).strip()
+
+        try:
+            rating = int(data.get("rating", 0))
+        except (TypeError, ValueError):
+            raise HTTPException(
+                status_code=400,
+                detail="Rating must be between 1 and 5."
+            )
+
+        if not name or not review_text:
+            raise HTTPException(
+                status_code=400,
+                detail="Name and review are required."
+            )
+
+        if len(name) > 100 or len(review_text) > 2000:
+            raise HTTPException(
+                status_code=400,
+                detail="Name or review is too long."
+            )
+
+        if rating < 1 or rating > 5:
+            raise HTTPException(
+                status_code=400,
+                detail="Rating must be between 1 and 5."
+            )
+
+        connection = get_connection()
+
+        try:
+            cursor = connection.cursor()
+
+            cursor.execute(
+                """
+                INSERT INTO reviews (name, rating, review_text)
+                VALUES (?, ?, ?)
+                RETURNING id, name, rating, review_text, created_at
+                """ if not IS_POSTGRES else
+                """
+                INSERT INTO reviews (name, rating, review_text)
+                VALUES (%s, %s, %s)
+                RETURNING id, name, rating, review_text, created_at
+                """,
+                (name, rating, review_text)
+            )
+
+            saved = cursor.fetchone()
+            connection.commit()
+
+            if isinstance(saved, dict):
+                result = saved
+            else:
+                result = dict(saved)
+
+            result["created_at"] = str(result["created_at"])
+
+            return {"message": "Review saved successfully", "review": result}
+
+        except Exception:
+            connection.rollback()
+            raise
+
+        finally:
+            connection.close()
+
+    except HTTPException:
+        raise
+    except Exception as error:
+        print("CREATE REVIEW ERROR:", repr(error))
+        raise HTTPException(
+            status_code=500,
+            detail="Could not save review."
+        )
+
+
+@app.get("/api/reviews")
+def get_reviews():
+
+    connection = None
+
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            """
+            SELECT id, name, rating, review_text, created_at
+            FROM reviews
+            ORDER BY created_at DESC
+            """
+        )
+
+        rows = cursor.fetchall()
+        reviews = []
+
+        for row in rows:
+            review = dict(row)
+            review["text"] = review.pop("review_text")
+            review["created_at"] = str(review["created_at"])
+            reviews.append(review)
+
+        return {"reviews": reviews}
+
+    except Exception as error:
+        print("GET REVIEWS ERROR:", repr(error))
+        raise HTTPException(
+            status_code=500,
+            detail="Could not load reviews."
+        )
+
+    finally:
+        if connection:
+            connection.close()
+
+# =========================================================
 # HEALTH CHECK
 # =========================================================
 
