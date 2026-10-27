@@ -836,10 +836,9 @@ async function loadAdminMenu() {
 
     try {
 
-        const response =
-            await fetch(
-                "/api/menu"
-            );
+       const response = await fetch(
+    "https://onebite-cafe.onrender.com/api/menu"
+);
 
 
         if (!response.ok) {
