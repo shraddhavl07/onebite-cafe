@@ -1303,7 +1303,7 @@ const comboItems = [
             "Veg Grilled Sandwich + Maggi + Any Mocktail",
         description:
             "Veg grilled sandwich, Maggi and any mocktail",
-        price: 249
+        price: 179
     },
 
     {
@@ -1312,7 +1312,7 @@ const comboItems = [
             "Paneer Pizza + Any 2 Mocktail",
         description:
             "Paneer pizza with any two mocktails",
-        price: 299
+        price: 249
     },
 
     {
@@ -1321,7 +1321,7 @@ const comboItems = [
             "2 Thick Cold Coffee + 1 Margherita + Fries",
         description:
             "Two thick cold coffees, Margherita pizza and fries",
-        price: 179
+        price: 299
     }
 
 ];
