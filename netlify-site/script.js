@@ -475,7 +475,6 @@ image: "imagges/veg-cheese-maggi.jpg"    },
         category: "Sandwich",
         image: "imagges/veg-grill-sandwich.jpg"
     },
-
     {
         id: 39,
         name: "Chocolate Sandwich",
@@ -1312,7 +1311,7 @@ const comboItems = [
             "Paneer Pizza + Any 2 Mocktail",
         description:
             "Paneer pizza with any two mocktails",
-        price: 249
+        price:  249
     },
 
     {
@@ -1321,7 +1320,7 @@ const comboItems = [
             "2 Thick Cold Coffee + 1 Margherita + Fries",
         description:
             "Two thick cold coffees, Margherita pizza and fries",
-        price: 299
+        price:  299
     }
 
 ];

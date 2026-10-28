@@ -556,7 +556,7 @@ combos = [
             "Combos",
 
         "price":
-            249,
+                249,
 
         "icon":
             "🍕🍹"
@@ -570,7 +570,7 @@ combos = [
             "Combos",
 
         "price":
-            299,
+             299,
 
         "icon":
             "🥤🍕🍟"
